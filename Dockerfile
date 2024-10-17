@@ -53,7 +53,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /app/node_modules/.cache
 
 # Start dbus service
-# RUN service dbus start
+RUN service dbus start
 
 # Exposed container port, the default is 3000, which can be modified through the environment variable PORT
 EXPOSE ${PORT:-3000}
@@ -67,4 +67,4 @@ ENV DBUS_SESSION_BUS_ADDRESS autolaunch:
 CMD ["yarn", "start"]
 
 # Launch Chromium
-# CMD ["chromium", "--no-sandbox"]
+# CMD ["chromium", "--no-sandbox", "--remote-allow-origins=*", "--headless=new", "--disable-gpu"]
