@@ -61,6 +61,7 @@ EXPOSE ${PORT:-3000}
 # Set the environment variable CHROME_PATH to specify the path to the Chromium binaries
 ENV CHROME_PATH='/usr/bin/chromium'
 ENV PUPPETEER_EXECUTABLE_PATH='/usr/bin/chromium'
+# Set the environment variable to autorun dbus service
 ENV DBUS_SESSION_BUS_ADDRESS autolaunch:
 
 # Define the command executed when the container starts and start the server.js of the Node.js application
