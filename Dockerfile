@@ -16,7 +16,7 @@ RUN apt-get update -qq --fix-missing && \
     wget --quiet --output-document=- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg && \
     echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
     apt-get update -qq && \
-    apt-get -qqy --no-install-recommends install chromium traceroute python make g++ dbus && \
+    apt-get -qqy --no-install-recommends install chromium traceroute python make g++ fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-khmeros fonts-kacst fonts-freefont-ttf libxss1 dbus dbus-x11 && \
     rm -rf /var/lib/apt/lists/* 
 
 # Run the Chromium browser's version command and redirect its output to the /etc/chromium-version file
