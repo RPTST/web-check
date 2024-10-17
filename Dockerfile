@@ -16,7 +16,7 @@ RUN apt-get update -qq --fix-missing && \
     wget --quiet --output-document=- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg && \
     echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
     apt-get update -qq && \
-    apt-get -qqy --no-install-recommends install chromium traceroute python make g++ && \
+    apt-get -qqy --no-install-recommends install chromium traceroute python make g++ dbus && \
     rm -rf /var/lib/apt/lists/* 
 
 # Run the Chromium browser's version command and redirect its output to the /etc/chromium-version file
@@ -52,11 +52,16 @@ RUN apt-get update && \
     chmod 755 /usr/bin/chromium && \
     rm -rf /var/lib/apt/lists/* /app/node_modules/.cache
 
+# Start dbus service
+RUN service dbus start
+
 # Exposed container port, the default is 3000, which can be modified through the environment variable PORT
 EXPOSE ${PORT:-3000}
 
 # Set the environment variable CHROME_PATH to specify the path to the Chromium binaries
 ENV CHROME_PATH='/usr/bin/chromium'
+ENV PUPPETEER_EXECUTABLE_PATH='/usr/bin/chromium'
 
 # Define the command executed when the container starts and start the server.js of the Node.js application
+CMD ["chromium", "--no-sandbox"]
 CMD ["yarn", "start"]
