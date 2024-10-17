@@ -101,6 +101,9 @@ The following section outlines the core features, and briefly explains why this 
 ###### Description
 An IP address (Internet Protocol address) is a numerical label assigned to each device connected to a network / the internet. The IP associated with a given domain can be found by querying the Domain Name System (DNS) for the domain's A (address) record.
 
+###### Why I modded
+The screenshot tool not working in docker, and I am trying to fix it.
+
 ###### Use Cases
 Finding the IP of a given server is the first step to conducting further investigations, as it allows us to probe the server for additional info. Including creating a detailed map of a target's network infrastructure, pinpointing the physical location of a server, identifying the hosting service, and even discovering other domains that are hosted on the same IP address.
 
