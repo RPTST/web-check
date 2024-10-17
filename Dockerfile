@@ -53,7 +53,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /app/node_modules/.cache
 
 # Start dbus service
-RUN service dbus start
+# RUN service dbus start
 
 # Exposed container port, the default is 3000, which can be modified through the environment variable PORT
 EXPOSE ${PORT:-3000}
@@ -61,7 +61,10 @@ EXPOSE ${PORT:-3000}
 # Set the environment variable CHROME_PATH to specify the path to the Chromium binaries
 ENV CHROME_PATH='/usr/bin/chromium'
 ENV PUPPETEER_EXECUTABLE_PATH='/usr/bin/chromium'
+ENV DBUS_SESSION_BUS_ADDRESS autolaunch:
 
 # Define the command executed when the container starts and start the server.js of the Node.js application
-CMD ["chromium", "--no-sandbox"]
 CMD ["yarn", "start"]
+
+# Launch Chromium
+# CMD ["chromium", "--no-sandbox"]
